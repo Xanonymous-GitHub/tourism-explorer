@@ -1,0 +1,22 @@
+language: node_js
+os:
+  - linux
+dist: focal
+node_js:
+  - "lts"
+branches:
+  only:
+    - main
+script: skip
+before_deploy:
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: dist/
+  fqdn: tour.ntut.club
+  strategy: git
+  on:
+    branch: main
