@@ -1,50 +1,22 @@
-import React, {useState, useEffect} from 'react'
-import logo from './logo.svg'
-import './App.scss'
+import React from 'react'
+import './assets/scss/App.scss'
 
-import {getScenicSpots} from "./api";
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
-function App() {
-    const [count, setCount] = useState(0)
+import {Home} from "./pages/Home";
+import {ScenicSpot} from "./pages/ScenicSpots";
+import {Notfound} from "./pages/Notfound";
 
-    useEffect(() => {
-        getScenicSpots().then(r => console.log(r))
-    }, [])
-
+const App = (): JSX.Element => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>Hello Vite + React!</p>
-                <p>
-                    <button onClick={() => setCount((count) => count + 1)}>
-                        count is: {count}
-                    </button>
-                </p>
-                <p>
-                    Edit <code>App.tsx</code> and save to test HMR updates.
-                </p>
-                <p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
-                    {' | '}
-                    <a
-                        className="App-link"
-                        href="https://vitejs.dev/guide/features.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Vite Docs
-                    </a>
-                </p>
-            </header>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/ScenicSpot' element={<ScenicSpot/>}/>
+                <Route path='/ScenicSpot/:city' element={<ScenicSpot/>}/>
+                <Route path='*' element={<Notfound/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
