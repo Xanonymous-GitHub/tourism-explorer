@@ -28,9 +28,25 @@ const getAuthorizationHeader = async (): Promise<Readonly<AuthorizationHeader>> 
 axios.defaults.baseURL = 'https://ptx.transportdata.tw/MOTC/v2/Tourism'
 axios.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8'
 
-export const getScenicSpots = async (top?: number, skip?: number): Promise<Option<ScenicSpotTourismInfo>> => {
+export const getScenicSpots = async (top?: number, skip?: number): Promise<Option<Array<ScenicSpotTourismInfo>>> => {
     try {
         const {data} = await axios.get('/ScenicSpot', {
+            headers: await getAuthorizationHeader(),
+            params: {
+                ...(top && {top}),
+                ...(skip && {skip})
+            }
+        })
+        return some(data)
+    } catch (e) {
+        console.warn(e)
+        return none
+    }
+}
+
+export const getScenicSpotsByCity = async (city: string, top?: number, skip?: number): Promise<Option<Array<ScenicSpotTourismInfo>>> => {
+    try {
+        const {data} = await axios.get(`/ScenicSpot/${city}`, {
             headers: await getAuthorizationHeader(),
             params: {
                 ...(top && {top}),
