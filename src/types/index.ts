@@ -37,6 +37,6 @@ export interface ScenicSpotTourismInfo {
     Remarks?: string,
     Keyword?: string,
     City?: string,
-    SrcUpdateTime: Date,
-    UpdateTime: Date,
+    SrcUpdateTime: string,
+    UpdateTime: string,
 }
