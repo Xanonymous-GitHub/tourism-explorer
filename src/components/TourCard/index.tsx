@@ -11,10 +11,10 @@ export const TourCard = (props: any): JSX.Element => {
     } = tourismInfo
 
     return (
-        <div className="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80">
-            <img className="max-h-40 w-full object-cover" alt='tour card'
-                 src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3}/>
-            <div className="bg-white dark:bg-gray-800 w-full p-4">
+        <div className="overflow-hidden shadow-lg rounded-lg h-120 w-60 md:w-80">
+            <img className="max-h-40 h-40 w-full object-cover" alt='tour card'
+                 src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || 'https://i.imgur.com/0WbpreU.webp'}/>
+            <div className="bg-white dark:bg-gray-800 w-full p-4 overflow-scroll h-80">
                 <p className="text-indigo-500 text-md font-medium">
                     Article
                 </p>
