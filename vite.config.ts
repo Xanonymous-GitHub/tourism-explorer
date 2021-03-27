@@ -4,6 +4,8 @@ import {minifyHtml} from 'vite-plugin-html';
 import legacy from '@vitejs/plugin-legacy'
 import WindiCSS from 'vite-plugin-windicss'
 import viteCompression from 'vite-plugin-compression'
+import prerenderSpaPlugin from 'rollup-plugin-prerender-spa-plugin'
+import * as path from 'path'
 
 export default defineConfig({
     plugins: [
@@ -30,6 +32,10 @@ export default defineConfig({
         }),
         viteCompression({
             algorithm: 'gzip'
+        }),
+        prerenderSpaPlugin({
+            staticDir: path.resolve(__dirname, 'dist'),
+            routes: ['/', '/ScenicSpot'],
         })
     ],
     build: {
