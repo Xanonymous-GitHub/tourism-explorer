@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import {getScenicSpots, getScenicSpotsByCity} from "../../api";
 import {ScenicSpotTourismInfo} from "../../types";
 import {isNone, Option} from "fp-ts/es6/Option";
+import './style.scss'
 
 import {TourCard} from "../../components/TourCard";
 
@@ -36,11 +37,16 @@ export const ScenicSpot = (): JSX.Element => {
     }, [])
 
     return (
-        <div>
-            {/*{city} <br/>*/}
-            <TourCard/>
-            {/*{(JSON.stringify(scenicSpotTourismInfo))}*/}
-            {/*<button onClick={fetchTourismInfo}>get</button>*/}
-        </div>
+        <>
+            <div className='card-container'>
+                {
+                    scenicSpotTourismInfo?.map((info, i) => {
+                        return (
+                            <TourCard key={info.ID} tourism-info={info}/>
+                        )
+                    })
+                }
+            </div>
+        </>
     )
 }
