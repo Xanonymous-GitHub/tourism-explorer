@@ -4,6 +4,8 @@ import {getScenicSpots, getScenicSpotsByCity} from "../../api";
 import {ScenicSpotTourismInfo} from "../../types";
 import {isNone, Option} from "fp-ts/es6/Option";
 
+import {TourCard} from "../../components/TourCard";
+
 const MAX_FETCH_COUNT = 30
 
 export const ScenicSpot = (): JSX.Element => {
@@ -35,9 +37,10 @@ export const ScenicSpot = (): JSX.Element => {
 
     return (
         <div>
-            {city} <br/>
-            {(JSON.stringify(scenicSpotTourismInfo))}
-            <button onClick={fetchTourismInfo}>get</button>
+            {/*{city} <br/>*/}
+            <TourCard/>
+            {/*{(JSON.stringify(scenicSpotTourismInfo))}*/}
+            {/*<button onClick={fetchTourismInfo}>get</button>*/}
         </div>
     )
 }
