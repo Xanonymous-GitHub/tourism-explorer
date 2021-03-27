@@ -1,5 +1,8 @@
 import React from "react"
 import {ScenicSpotTourismInfo} from "../../types";
+import LazyLoad from 'react-lazyload';
+
+const placeholderImgUrl = 'https://i.imgur.com/ZaEuYbZ.webp'
 
 export const TourCard = (props: any): JSX.Element => {
     const tourismInfo = props['tourism-info'] as ScenicSpotTourismInfo
@@ -11,12 +14,13 @@ export const TourCard = (props: any): JSX.Element => {
         City
     } = tourismInfo
 
-    console.log(Picture)
-
     return (
         <div className="overflow-hidden shadow-lg rounded-lg h-120 w-full md:w-80">
-            <img className="max-h-40 h-40 w-full object-cover" alt='tourism image'
-                 src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || 'https://i.imgur.com/0WbpreU.webp'}/>
+            <LazyLoad height={160} offset={100} once classNamePrefix={`background-image:url(${placeholderImgUrl})`}
+                      placeholder={<img src={placeholderImgUrl} alt=''/>}>
+                <img className="max-h-40 h-40 w-full object-cover" alt='tourism image'
+                     src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || placeholderImgUrl}/>
+            </LazyLoad>
             <div className="bg-white dark:bg-gray-800 w-full p-4 overflow-scroll h-80 rounded-b-lg">
                 <p className="text-indigo-500 text-md font-medium">
                     {City}
