@@ -7,8 +7,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@better-scroll/core": "^2.2.1",
-    "@better-scroll/observe-dom": "^2.2.1",
     "history": "^5.0.0",
     "js-base64": "^3.6.0",
     "js-crypto-hmac": "^1.0.2",
