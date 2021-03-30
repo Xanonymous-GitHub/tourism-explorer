@@ -6,6 +6,7 @@ import {isNone, Option} from "fp-ts/es6/Option";
 import './style.scss'
 
 import {TourCard} from "../../components/TourCard";
+import {FetchDetector} from "../../components/FetchDetector";
 
 const MAX_FETCH_COUNT = 30
 
@@ -38,7 +39,7 @@ export const ScenicSpot = (): JSX.Element => {
 
     return (
         <>
-            <div className='scenic-spots card-container bg-white dark:bg-gray-700'>
+            <div className='card-container bg-white dark:bg-gray-700 min-h-screen'>
                 {
                     scenicSpotTourismInfo?.map((info, i) => {
                         return (
@@ -46,6 +47,7 @@ export const ScenicSpot = (): JSX.Element => {
                         )
                     })
                 }
+                <FetchDetector fetchData={fetchTourismInfo}/>
             </div>
         </>
     )
