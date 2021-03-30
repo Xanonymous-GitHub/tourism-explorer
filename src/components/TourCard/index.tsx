@@ -2,11 +2,13 @@ import React from "react"
 import {ScenicSpotTourismInfo} from "../../types";
 import LazyLoad from 'react-lazyload';
 
+interface TourCardProps {
+    tourismInfo: ScenicSpotTourismInfo
+}
+
 const placeholderImgUrl = 'https://i.imgur.com/ZaEuYbZ.webp'
 
-export const TourCard = (props: any): JSX.Element => {
-    const tourismInfo = props['tourism-info'] as ScenicSpotTourismInfo
-
+export const TourCard = ({tourismInfo}: TourCardProps): JSX.Element => {
     const {
         Name,
         Picture,

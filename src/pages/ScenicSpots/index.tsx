@@ -43,7 +43,7 @@ export const ScenicSpot = (): JSX.Element => {
                 {
                     scenicSpotTourismInfo?.map((info, i) => {
                         return (
-                            <TourCard key={info.ID} tourism-info={info}/>
+                            <TourCard key={info.ID + i} tourismInfo={info}/>
                         )
                     })
                 }
