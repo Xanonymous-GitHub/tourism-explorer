@@ -227,6 +227,25 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.2.1.tgz#3e35b1f6886c712cd9a6baf6aa0b31c754721414"
+  integrity sha512-5Uap8j9tdatTVGnWKLCqzp1yEzmRKxaciURYrgng7FkjkBst5hR8YyS+YbBocUT1pAjeGS6c5Az2vaSmvN3yug==
+  dependencies:
+    "@better-scroll/shared-utils" "^2.2.1"
+
+"@better-scroll/observe-dom@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@better-scroll/observe-dom/-/observe-dom-2.2.1.tgz#8b206e01077ae4e84a806cfd298e9104fb1729c6"
+  integrity sha512-R2ZnvGJEVTNga907kr2KTgfuX7hyO1Coc3K8e2OXima6d1LU+2iuNEC2GwiUVlgR/XtwnhfTBvy7gGg9gChZ3w==
+  dependencies:
+    "@better-scroll/core" "^2.2.1"
+
+"@better-scroll/shared-utils@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.2.1.tgz#eb024feee1d37598a9b04fc18ca0d8b31f34f704"
+  integrity sha512-EDkIp/93CcdMYyVfdIqga1edErmolEQvi9xI0lmBxYl1dSBGZxVQgAmBunqw7zXODwJOAWcS7mhcIGu0H/oS5Q==
+
 "@cush/relative@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@cush/relative/-/relative-0.1.0.tgz#19bfc2c8d46335205932f2032e3569f99fd61b40"

@@ -38,7 +38,7 @@ export const ScenicSpot = (): JSX.Element => {
 
     return (
         <>
-            <div className='card-container bg-white dark:bg-gray-700'>
+            <div className='scenic-spots card-container bg-white dark:bg-gray-700'>
                 {
                     scenicSpotTourismInfo?.map((info, i) => {
                         return (
