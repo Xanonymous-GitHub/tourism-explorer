@@ -2,8 +2,8 @@ import React, {useEffect, useState, useRef} from "react"
 import {useParams} from 'react-router-dom'
 import {getScenicSpots, getScenicSpotsByCity} from "../../api";
 import {ScenicSpotTourismInfo} from "../../types";
-import {isEmptyObject} from "../../utils/checks";
 import {isNone, Option} from "fp-ts/es6/Option";
+import {isEmpty} from "fp-ts/es6/Array";
 import './style.scss'
 
 import {TourCard} from "../../components/TourCard";
@@ -30,7 +30,7 @@ export const ScenicSpot = (): JSX.Element => {
 
         if (isNone(fetchedTourismInfo)) throw new Error(`fail to fetch TourismInfo!`)
 
-        if (!isEmptyObject(fetchedTourismInfo.value)) {
+        if (!isEmpty(fetchedTourismInfo.value)) {
             setScenicSpotTourismInfo([
                 ...(tourismInfoState.current ? tourismInfoState.current : []),
                 ...fetchedTourismInfo.value

@@ -5,27 +5,27 @@ interface FetchDetectorProps {
     fetchData: () => Promise<void>
 }
 
-export const FetchDetector = ({fetchData, active = false}: FetchDetectorProps): JSX.Element => {
-    const observerConfig = {
-        rootMargin: '300px',
-        threshold: [0]
-    }
+const observerConfig = {
+    rootMargin: '300px',
+    threshold: [0]
+}
 
-    const updateObserver = new IntersectionObserver(
+export const FetchDetector = ({fetchData, active = false}: FetchDetectorProps): JSX.Element => {
+    const updateObserver =  useRef<IntersectionObserver>(new IntersectionObserver(
         async ([e]) => {
             if (e.intersectionRatio > 0) {
                 await fetchData()
             }
-        }, observerConfig)
+        }, observerConfig))
 
     const detector = useRef<HTMLDivElement>({} as HTMLDivElement)
 
     useEffect(() => {
         if (active) {
-            updateObserver.observe(detector.current)
+            updateObserver.current.observe(detector.current)
         } else {
-            updateObserver.unobserve(detector.current)
-            updateObserver.disconnect()
+            updateObserver.current.unobserve(detector.current)
+            updateObserver.current.disconnect()
         }
     }, [active])
 
