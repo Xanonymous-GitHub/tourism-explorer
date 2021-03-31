@@ -7,6 +7,7 @@ interface TourCardProps {
 }
 
 const placeholderImgUrl = 'https://i.imgur.com/ZaEuYbZ.webp'
+const nonPictureReplacementUrl = 'https://i.imgur.com/gMtz026.webp'
 
 export const TourCard = ({tourismInfo}: TourCardProps): JSX.Element => {
     const {
@@ -21,7 +22,7 @@ export const TourCard = ({tourismInfo}: TourCardProps): JSX.Element => {
             <LazyLoad height={160} offset={100} once classNamePrefix={`background-image:url(${placeholderImgUrl})`}
                       placeholder={<img src={placeholderImgUrl} alt=''/>}>
                 <img className="max-h-40 h-40 w-full object-cover" alt='tourism image'
-                     src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || placeholderImgUrl}/>
+                     src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || nonPictureReplacementUrl}/>
             </LazyLoad>
             <div className="bg-white dark:bg-gray-800 w-full p-4 overflow-scroll h-80 rounded-b-lg">
                 <p className="text-indigo-500 text-md font-medium">
