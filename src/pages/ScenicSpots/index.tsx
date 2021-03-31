@@ -8,6 +8,7 @@ import './style.scss'
 
 import {TourCard} from "../../components/TourCard";
 import {FetchDetector} from "../../components/FetchDetector";
+import {Navbar} from "../../components/Navbar";
 
 const MAX_FETCH_COUNT = 30
 
@@ -47,17 +48,20 @@ export const ScenicSpot = (): JSX.Element => {
     }, [])
 
     return (
-        <div className='bg-white dark:bg-gray-700 min-h-screen'>
-            <div className='card-container'>
-                {
-                    scenicSpotTourismInfo?.map((info, i) => {
-                        return (
-                            <TourCard key={info.ID + i} tourismInfo={info}/>
-                        )
-                    })
-                }
+        <>
+            <Navbar/>
+            <div className='bg-white dark:bg-gray-700 min-h-screen'>
+                <div className='card-container'>
+                    {
+                        scenicSpotTourismInfo?.map((info, i) => {
+                            return (
+                                <TourCard key={info.ID + i} tourismInfo={info}/>
+                            )
+                        })
+                    }
+                </div>
+                <FetchDetector fetchData={fetchTourismInfo} active={updateDetectorActive}/>
             </div>
-            <FetchDetector fetchData={fetchTourismInfo} active={updateDetectorActive}/>
-        </div>
+        </>
     )
 }
