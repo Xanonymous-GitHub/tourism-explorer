@@ -31,6 +31,6 @@
     "vite-plugin-compress": "^2.0.0",
     "vite-plugin-compression": "^0.2.3",
     "vite-plugin-html": "^2.0.3",
-    "vite-plugin-windicss": "^0.11.1"
+    "vite-plugin-windicss": "^0.11.2"
   }
 }
