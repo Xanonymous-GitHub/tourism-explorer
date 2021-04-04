@@ -6,6 +6,9 @@ import WindiCSS from 'vite-plugin-windicss'
 import viteCompression from 'vite-plugin-compression'
 import prerenderSpaPlugin from 'rollup-plugin-prerender-spa-plugin'
 import * as path from 'path'
+import {cityData} from "./src/utils/cities";
+
+const cityPath = cityData.map(city => '/ScenicSpot/' + city.id)
 
 export default defineConfig({
     plugins: [
@@ -35,7 +38,7 @@ export default defineConfig({
         }),
         prerenderSpaPlugin({
             staticDir: path.resolve(__dirname, 'dist'),
-            routes: ['/', '/ScenicSpot'],
+            routes: ['/', '/ScenicSpot'].concat(cityPath),
         })
     ],
     build: {
