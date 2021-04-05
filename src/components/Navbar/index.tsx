@@ -1,5 +1,6 @@
 import React from "react"
 import {DropDown} from "./DropDown";
+import {Link} from "react-router-dom";
 
 export const Navbar = (): JSX.Element => {
     return (
@@ -8,13 +9,13 @@ export const Navbar = (): JSX.Element => {
                 <div className="relative flex items-center justify-between h-16">
                     <div
                         className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start h-full relative">
-                        <div className="flex-shrink-0 flex items-center h-full relative">
+                        <Link to='/' rel='noreferrer noopener' className="flex-shrink-0 flex items-center h-full relative">
                             <img className="block md:hidden h-2/3 w-auto"
                                  src="https://i.imgur.com/v2mpZLd.webp" alt="Workflow"/>
                             <img className="hidden md:block h-5/6 relative w-auto"
                                  src="https://i.imgur.com/alnkukQ.webp"
                                  alt="Workflow"/>
-                        </div>
+                        </Link>
                         <div className="block sm:ml-6 my-auto">
                             <div className="flex space-x-4">
                                 <DropDown/>
