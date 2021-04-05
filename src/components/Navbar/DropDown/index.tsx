@@ -31,7 +31,7 @@ export const DropDown = (): JSX.Element => {
                     {
                         cities.map(city =>
                             city.name !== currentCity ?
-                                <Link to={'/ScenicSpot/' + city.id} key={city.id}>
+                                <Link to={'/ScenicSpot/' + city.id} key={city.id} rel="noreferrer noopener">
                                     <li className="bg-gray-200 hover:bg-gray-400 active:bg-gray-500 py-2 px-4 block whitespace-no-wrap select-none cursor-pointer whitespace-nowrap">
                                         {city.name}
                                     </li>

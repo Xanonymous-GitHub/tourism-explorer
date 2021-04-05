@@ -3,7 +3,7 @@ import {DropDown} from "./DropDown";
 
 export const Navbar = (): JSX.Element => {
     return (
-        <nav className="bg-gray-800">
+        <nav className="bg-gray-800 fixed w-screen top-0 z-50 shadow-lg">
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-between h-16">
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start h-full relative">

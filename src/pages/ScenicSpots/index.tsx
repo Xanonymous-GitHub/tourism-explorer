@@ -36,7 +36,7 @@ export const ScenicSpot = (): JSX.Element => {
     return (
         <>
             <Navbar/>
-            <div className='bg-white dark:bg-gray-700 min-h-screen'>
+            <div className='bg-white dark:bg-gray-700 min-h-screen relative mt-16'>
                 <CardArea ref={cardArea} city={city}
                           startUpdate={() => fetchDetector.current.startObserver()}
                           stopUpdate={() => fetchDetector.current.stopObserver()}
