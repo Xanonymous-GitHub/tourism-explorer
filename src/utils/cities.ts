@@ -5,6 +5,10 @@ export interface CityData {
 
 export const cityData: Array<Readonly<CityData>> = [
     {
+        id: '',
+        name: '所有城市'
+    },
+    {
         id: 'Taipei',
         name: '臺北市'
     },

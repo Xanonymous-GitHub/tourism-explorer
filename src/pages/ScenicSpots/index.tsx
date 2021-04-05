@@ -1,66 +1,48 @@
-import React, {useEffect, useState, useRef} from "react"
+import React, {
+    useRef,
+    useEffect,
+    useLayoutEffect,
+    useCallback,
+} from "react"
 import {useParams} from 'react-router-dom'
-import {getScenicSpots, getScenicSpotsByCity} from "../../api";
-import {ScenicSpotTourismInfo} from "../../types";
-import {isNone, Option} from "fp-ts/es6/Option";
-import {isEmpty} from "fp-ts/es6/Array";
-import './style.scss'
 
-import {TourCard} from "../../components/TourCard";
-import {FetchDetector} from "../../components/FetchDetector";
+import {FetchDetector, FetchDetectorExposeInstance} from "../../components/FetchDetector";
 import {Navbar} from "../../components/Navbar";
-
-const MAX_FETCH_COUNT = 30
+import {CardArea, CardAreaExposedInstance} from "./CardArea";
 
 export const ScenicSpot = (): JSX.Element => {
     const {city} = useParams()
-    const [scenicSpotTourismInfo, setScenicSpotTourismInfo] = useState<Array<ScenicSpotTourismInfo>>()
-    const [updateDetectorActive, setDetectorActive] = useState<boolean>(false)
-    const tourismInfoState = useRef<Array<ScenicSpotTourismInfo>>()
 
-    tourismInfoState.current = scenicSpotTourismInfo
+    const cardArea = useRef<CardAreaExposedInstance>({} as CardAreaExposedInstance)
+    const fetchDetector = useRef<FetchDetectorExposeInstance>({} as FetchDetectorExposeInstance)
 
-    const fetchTourismInfo = async () => {
-        let fetchedTourismInfo: Option<Array<ScenicSpotTourismInfo>>
+    let cardAreaKey = useRef(0)
+    let fetchDetectorKey = useRef(0)
 
-        if (Boolean(city)) {
-            fetchedTourismInfo = await getScenicSpotsByCity(city, MAX_FETCH_COUNT, tourismInfoState.current?.length)
-        } else {
-            fetchedTourismInfo = await getScenicSpots(MAX_FETCH_COUNT, tourismInfoState.current?.length)
-        }
+    const updateTourismInfo = useCallback(async (needClean?: boolean) => {
+        await cardArea.current.updateTourismInfo(needClean)
+    }, [city])
 
-        if (isNone(fetchedTourismInfo)) throw new Error(`fail to fetch TourismInfo!`)
-
-        if (!isEmpty(fetchedTourismInfo.value)) {
-            setScenicSpotTourismInfo([
-                ...(tourismInfoState.current ? tourismInfoState.current : []),
-                ...fetchedTourismInfo.value
-            ])
-        } else {
-            setDetectorActive(false)
-        }
-    }
+    useLayoutEffect(() => {
+        fetchDetector.current.stopObserver()
+    }, [city])
 
     useEffect(() => {
-        fetchTourismInfo().then(
-            () => setDetectorActive(true)
-        )
-    }, [])
+        cardAreaKey.current++
+        fetchDetectorKey.current++
+        updateTourismInfo(true).then()
+    }, [city])
 
     return (
         <>
             <Navbar/>
             <div className='bg-white dark:bg-gray-700 min-h-screen'>
-                <div className='card-container'>
-                    {
-                        scenicSpotTourismInfo?.map((info, i) => {
-                            return (
-                                <TourCard key={info.ID + i} tourismInfo={info}/>
-                            )
-                        })
-                    }
-                </div>
-                <FetchDetector fetchData={fetchTourismInfo} active={updateDetectorActive}/>
+                <CardArea ref={cardArea} city={city}
+                          startUpdate={() => fetchDetector.current.startObserver()}
+                          stopUpdate={() => fetchDetector.current.stopObserver()}
+                          key={'card-area' + cardAreaKey.current}/>
+                <FetchDetector fetchData={updateTourismInfo} ref={fetchDetector}
+                               key={'fetch-detector' + fetchDetectorKey.current}/>
             </div>
         </>
     )

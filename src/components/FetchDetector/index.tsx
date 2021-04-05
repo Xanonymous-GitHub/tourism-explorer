@@ -1,8 +1,12 @@
-import React, {useRef, useEffect} from "react"
+import React, {useRef, forwardRef, useImperativeHandle, Ref} from "react"
 
 interface FetchDetectorProps {
-    active: boolean
     fetchData: () => Promise<void>
+}
+
+export interface FetchDetectorExposeInstance {
+    startObserver: () => void
+    stopObserver: () => void
 }
 
 const observerConfig = {
@@ -10,26 +14,34 @@ const observerConfig = {
     threshold: [0]
 }
 
-export const FetchDetector = ({fetchData, active = false}: FetchDetectorProps): JSX.Element => {
-    const updateObserver =  useRef<IntersectionObserver>(new IntersectionObserver(
+export const FetchDetector = forwardRef(({fetchData}: FetchDetectorProps, ref: Ref<FetchDetectorExposeInstance>): JSX.Element => {
+    const active = useRef<boolean>(false)
+
+    const updateObserver = new IntersectionObserver(
         async ([e]) => {
-            if (e.intersectionRatio > 0) {
+            if (active.current && e.isIntersecting && e.intersectionRatio > 0) {
                 await fetchData()
             }
-        }, observerConfig))
+        }, observerConfig)
 
     const detector = useRef<HTMLDivElement>({} as HTMLDivElement)
 
-    useEffect(() => {
-        if (active) {
-            updateObserver.current.observe(detector.current)
-        } else {
-            updateObserver.current.unobserve(detector.current)
-            updateObserver.current.disconnect()
-        }
-    }, [active])
+    const startObserver = () => {
+        updateObserver.observe(detector.current)
+        active.current = true
+    }
+    const stopObserver = () => {
+        active.current = false
+        updateObserver.unobserve(detector.current)
+        updateObserver.disconnect()
+    }
+
+    useImperativeHandle(ref, () => ({
+        startObserver,
+        stopObserver,
+    } as FetchDetectorExposeInstance))
 
     return (
         <div className='bg-transparent h-px relative' ref={detector}/>
     )
-}
+})
