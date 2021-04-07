@@ -24,7 +24,7 @@ export const TourCard = ({tourismInfo}: TourCardProps): JSX.Element => {
                 <img className="max-h-40 h-40 w-full object-cover" alt='tourism image'
                      src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3 || nonPictureReplacementUrl}/>
             </LazyLoad>
-            <div className="bg-white dark:bg-gray-800 w-full p-4 overflow-scroll h-80 rounded-b-lg">
+            <div className="bg-white dark:bg-gray-800 w-full p-4 overflow-auto h-80 rounded-b-lg">
                 <p className="text-indigo-500 text-md font-medium">
                     {City}
                 </p>
