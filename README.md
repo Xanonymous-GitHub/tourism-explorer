@@ -17,13 +17,13 @@ Whether it is a hot summer or a cold winter, it is inevitable that you will want
 
 <p><b>Please execute this command before running any test:</b></p> 
 
-**`yarn install --frozen-lockfile`**
+**`pnpm install --frozen-lockfile`**
 
 <p>And then, the easiest way to test is to execute the following commands:</p> 
 
-**`yarn preview`** - Run the actual deployed website.
+**`pnpm preview`** - Run the actual deployed website.
 
-**`yarn dev`** - Run the website in development mode.
+**`pnpm dev`** - Run the website in development mode.
 
 Enjoy your play!
 

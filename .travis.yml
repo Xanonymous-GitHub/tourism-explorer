@@ -8,8 +8,15 @@ branches:
   only:
     - main
 script: skip
-before_deploy:
-  - npm run build
+cache:
+  npm: false
+  directories:
+    - "~/.pnpm-store"
+before_install:
+  - npm i -g pnpm
+install:
+  - pnpm i --frozen-lockfile
+  - pnpm run build
 deploy:
   provider: pages
   skip_cleanup: true
