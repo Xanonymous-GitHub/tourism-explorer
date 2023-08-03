@@ -29,7 +29,7 @@
     "rollup-plugin-prerender-spa-plugin": "^0.0.6",
     "sass": "^1.37.5",
     "typescript": "^4.3.5",
-    "vite": "^2.4.4",
+    "vite": "^2.9.16",
     "vite-plugin-compress": "^2.1.0",
     "vite-plugin-compression": "^0.3.3",
     "vite-plugin-html": "^2.0.7",
